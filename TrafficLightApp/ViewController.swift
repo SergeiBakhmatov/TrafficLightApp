@@ -26,7 +26,9 @@ class ViewController: UIViewController {
         
     }
 
-    @IBAction func startBatton() {
+
+    @IBAction func startButtonDidTapped() {
+        startButton.setTitle("NEXT", for: .normal)
     }
     
 }
