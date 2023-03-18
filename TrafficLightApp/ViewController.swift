@@ -15,6 +15,8 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var startButton: UIButton!
     
+    var countTapps = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,9 +28,41 @@ class ViewController: UIViewController {
         
     }
 
-
     @IBAction func startButtonDidTapped() {
-        startButton.setTitle("NEXT", for: .normal)
+        
+        if countTapps == 0 {
+            startButton.setTitle("NEXT", for: .normal)
+            countTapps += 1
+            changeTrafficLightColor()
+        } else if countTapps <= 2 {
+            countTapps += 1
+            changeTrafficLightColor()
+        } else {
+            countTapps = 1
+            changeTrafficLightColor()
+        }
+       
+    }
+    
+    private func changeTrafficLightColor() {
+    
+        switch countTapps {
+        case 1:
+            redView.alpha = 1
+            yellowView.alpha = 0.3
+            greenView.alpha = 0.3
+        case 2:
+            redView.alpha = 0.3
+            yellowView.alpha = 1
+            greenView.alpha = 0.3
+        case 3:
+            redView.alpha = 0.3
+            yellowView.alpha = 0.3
+            greenView.alpha = 1
+        default:
+            return
+        }
+        
     }
     
 }
